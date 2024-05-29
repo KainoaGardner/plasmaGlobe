@@ -11,7 +11,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
 
-        screen.fill("black")
+        screen.fill(GRAY)
         displayGlobe(screen, beams)
         pygame.display.update()
         clock.tick(FPS)
