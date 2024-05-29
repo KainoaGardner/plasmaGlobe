@@ -15,7 +15,7 @@ def displayGlobe(screen, beams):
             Beam(
                 randint(-360, 360),
                 randint(-360, 360),
-                0.50,
+                RADIUS / 650,
                 randint(1, 100),
                 (randint(-1, 1), randint(-1, 1)),
                 randint(5, 10),
@@ -32,7 +32,7 @@ def displayGlobe(screen, beams):
         beam.display(screen)
     pygame.draw.circle(screen, PURPLE, (WIDTH // 2, HEIGHT // 2), RADIUS // 10 + size)
     pygame.draw.circle(screen, RED, (WIDTH // 2, HEIGHT // 2), RADIUS // 10)
-    pygame.draw.circle(screen, WHITE, (WIDTH // 2, HEIGHT // 2), RADIUS // 20 + size)
+    pygame.draw.circle(screen, PINK, (WIDTH // 2, HEIGHT // 2), RADIUS // 30 + size)
     for i in range(len(beams) - 1, -1, -1):
         beam = beams[i]
         if beam.z >= 500:
@@ -80,6 +80,7 @@ class Beam:
         self.angleA += self.direction[1] / self.speed
         sizeChange = self.z / 25
         self.size = sizeChange * self.scale
+        self.size += randint(-1, 1)
         self.getPos(self.angleA, self.angleB)
 
     def getPos(self, angleA, angleB):
@@ -116,7 +117,7 @@ class Beam:
         last = (self.xBase, self.yBase)
         for _ in range(beams):
             beamDist = distance + randint(
-                int(-distance // beams), int(distance // beams)
+                int(-distance // (beams + 1)), int(distance // (beams + 1))
             )
             beamAngle = angle + randint(-15, 15)
             newX = beamDist * math.cos(math.radians(beamAngle)) + last[0]
@@ -163,7 +164,7 @@ class Beam:
 
         pygame.draw.circle(screen, PURPLE, (self.x, self.y), self.size + 5)
         pygame.draw.circle(screen, RED, (self.x, self.y), self.size)
-        pygame.draw.circle(screen, WHITE, (self.x, self.y), self.size // 2)
+        pygame.draw.circle(screen, PINK, (self.x, self.y), self.size // 2)
 
 
 beams = []
