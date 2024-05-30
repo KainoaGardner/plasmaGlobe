@@ -9,7 +9,7 @@ size = 1
 def displayGlobe(screen, beams):
     global size
     makeBeam = randint(1, 100)
-    if makeBeam < 50:
+    if makeBeam < 50 and len(beams) < 20:
         size = randint(1, 10)
         beams.append(
             Beam(
